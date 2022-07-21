@@ -1,0 +1,1 @@
+module.exports = 'A$_4@24-3t.as7?df;';
