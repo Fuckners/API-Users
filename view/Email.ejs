@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            color: whitesmoke;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        div.token {
+            width: 80%;
+            background-color: deeppink;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 20px 5px #e91e63;
+            margin: 5% auto;
+            color: whitesmoke;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        p.token:hover {
+            opacity: .8;
+        }
+
+        a {
+            color: deeppink;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        p.justy {
+            margin: 20px 0 0 0;
+            text-align: justify;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Bom dia!</h1>
+    <p class="justy">Olá, <%= username %>, foi você que encomendou um token de recuperação de senha?? Tá na mão!</p>
+    
+    <p class="justy">Vê se guarda direito sua senha dessa vez ein. Se precisar de mais alguma coisa, só entrar em <a href="#">contato</a> conosco!</p>
+
+    <div class="token">
+        <p>É um pouquinho grande, mas pelo menos alguma coisa aqui tem que ser né.</p>
+        <br>
+        <p class="token"><%= token %></p>
+    </div>
+
+    <p><a href="#">Clique aqui para mudar sua senha.</a></p>
+
+    <small>Caso não tenha feito essa solicitação, entre em <a href="#">contato conosco</a>!</small>
+</body>
+
+</html>

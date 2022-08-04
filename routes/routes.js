@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const AdminAuth = require('../middlewares/AdminAuth');
-const HomeController = require("../controllers/HomeController");
+const HomeController = require('../controllers/HomeController');
 const UserController = require('../controllers/UserController');
 
 router.get('/', HomeController.index);
@@ -23,6 +23,9 @@ router.get('/password/recover/:email', UserController.passwordRecover);
 router.put('/password/change', UserController.passwordChange);
 // email + password (new) + token
 
-router.get('/login', UserController.login);
+router.post('/login', UserController.login);
+// email + password
+
+router.post('/tokenValidate', AdminAuth, HomeController.tokenValidate);
 
 module.exports = router

@@ -104,6 +104,15 @@ class User {
                     throw { code: 'Usuário não encontrado.', no: 404 };
                 }
 
+                if (email === user.email) {
+                    email = undefined
+                } else {
+                    const userMail = await this.findByMail(email);
+                    if (userMail) {
+                        throw { code: 'Email já cadastrado.', no: 406 };
+                    }
+                }
+
                 // atualizando dados no database.
                 await database.update({ email, name, role }).table('users').where({ id });
                 resolve();

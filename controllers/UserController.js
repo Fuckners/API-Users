@@ -109,11 +109,6 @@ class UserController {
             if (email) {
                 if (!email.includes('@') || !email.includes('.') || email.length < 5) {
                     throw { code: 'Email inválido', no: 406 };
-                } else {
-                    const user = await User.findByMail(email);
-                    if (user) {
-                        throw { code: 'Email já cadastrado.', no: 406 };
-                    }
                 }
 
             }
@@ -172,13 +167,23 @@ class UserController {
                 throw { code: 'Email Inválido.', no: 406 };
             }
 
+            const user = await User.findByMail(email);
+
+            if (!user) {
+                throw { code: 'Usuário não encontrado.', no: 404 };
+            }
+
             const token = await PasswordToken.create(email);
 
-            // FAZER SISTEMA PARA MANDAR O EMAIL COM O TOKEEEEEEEEEEN!
+            // const accountTemp = await nodemailer.createTestAccount();
+
+            await PasswordToken.sendTokenByMail(email, user.name, token);
+
             res.status(200);
-            res.json({ token }); // res.send(`Token enviado para o email ${email}.`);
+            res.send(`Token enviado para o email ${email}.`);
 
         } catch (error) {
+            
             if (error.no) {
                 res.status(error.no);
                 res.json({ err: error.code });
